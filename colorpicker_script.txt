@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#  _   _   _   _   _   _   _   _   _   _   _  
+# / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ 
+# ( C | o | l | o | r | p | i | c | k | e | r )
+#  \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ 
+
+# Run hyprpicker to get the color
+COLOR=$(hyprpicker -f hex)
+
+if [ -z "$COLOR" ]; then
+    exit 0
+fi
+
+# Detect dark/light mode
+SETTINGS_FILE="$HOME/.config/gtk-3.0/settings.ini"
+if [ -f "$SETTINGS_FILE" ]; then
+    THEME_PREF=$(grep -E '^gtk-application-prefer-dark-theme=' "$SETTINGS_FILE" | awk -F'=' '{print $2}')
+else
+    THEME_PREF=1
+fi
+
+if [ "$THEME_PREF" -eq 1 ]; then
+    MODE="dark"
+else
+    MODE="light"
+fi
+
+# Detect matugen type
+matugenfile="$HOME/.config/ml4w/settings/matugen-type.sh"
+if [ -f "$matugenfile" ]; then
+    matugentype=$(cat $matugenfile)
+else
+    matugentype="scheme-tonal-spot"
+fi
+
+# Run matugen
+echo ":: Running matugen with color $COLOR, mode $MODE and type $matugentype"
+$HOME/.local/bin/matugen color hex "$COLOR" -m "$MODE" -t "$matugentype"
+
+# Reload Waybar
+sleep 1
+$HOME/.config/waybar/launch.sh
