@@ -164,10 +164,10 @@ const portfolioData = {
         }
     ],
     terminalHelp: [
-        { cmd: "help", desc: "Lista os comandos disponíveis" }, { cmd: "about", desc: "Sobre Vitor e seu perfil profissional" },
-        { cmd: "skills", desc: "Visualiza competências técnicas e interpessoais" }, { cmd: "education", desc: "Formação no SENAI e High School Diploma" },
-        { cmd: "languages", desc: "Inglês fluente e Português nativo" }, { cmd: "projects", desc: "Lista os projetos práticos de infraestrutura" },
-        { cmd: "contact", desc: "Telefone, WhatsApp, LinkedIn e GitHub" }, { cmd: "theme [dark|light]", desc: "Alterna o tema visual" }, { cmd: "clear", desc: "Limpa o histórico do terminal" }
+        { cmd: "ajuda", desc: "Lista os comandos disponíveis" }, { cmd: "sobre", desc: "Sobre Vitor e seu perfil profissional" },
+        { cmd: "competencias", desc: "Visualiza competências técnicas e interpessoais" }, { cmd: "formacao", desc: "Formação no SENAI e High School Diploma" },
+        { cmd: "idiomas", desc: "Inglês fluente e Português nativo" }, { cmd: "projetos", desc: "Lista os projetos práticos de infraestrutura" },
+        { cmd: "contato", desc: "Telefone, WhatsApp, LinkedIn e GitHub" }, { cmd: "tema escuro", desc: "Ativa o tema escuro" }, { cmd: "limpar", desc: "Limpa o histórico do terminal" }
     ]
 };
 

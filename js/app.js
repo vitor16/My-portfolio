@@ -51,9 +51,9 @@ class PortfolioApp {
                 document.body.classList.toggle('is-muted', this.isMuted);
                 if (!this.isMuted) {
                     this.playHapticSound(900, 0.04);
-                    this.showToast("Sound effects enabled 🔊");
+                    this.showToast("Sons da interface ativados 🔊");
                 } else {
-                    this.showToast("Sound effects muted 🔇");
+                    this.showToast("Sons da interface desativados 🔇");
                 }
             });
         }
@@ -297,7 +297,7 @@ class PortfolioApp {
                     <!-- Carousel Slider Box -->
                     <div class="project-carousel" id="carousel-${project.id}">
                         <div class="carousel-badge">${project.categoryLabel}</div>
-                        <button class="carousel-zoom-btn" title="View Full Case Study" onclick="app.openCaseStudyModal('${project.id}')">
+                        <button class="carousel-zoom-btn" title="Ver detalhes completos" onclick="app.openCaseStudyModal('${project.id}')">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
                         </button>
 
@@ -337,16 +337,16 @@ class PortfolioApp {
                         </div>
 
                         <div class="project-footer">
-                            <button class="liquid-btn liquid-btn-glass liquid-btn-sm" onclick="app.openCaseStudyModal('${project.id}')">
-                                Case Study
+                        <button class="liquid-btn liquid-btn-glass liquid-btn-sm" onclick="app.openCaseStudyModal('${project.id}')">
+                                Ver detalhes
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             </button>
 
                             <div class="project-links">
-                                <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Repository">
+                                <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="icon-link" title="Abrir GitHub">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                                 </a>
-                                <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="icon-link" title="Live Interactive Demo">
+                                <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="icon-link" title="Abrir projeto online">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                                 </a>
                             </div>
@@ -541,7 +541,7 @@ class PortfolioApp {
         // Strip HTML tags for clean clipboard
         const plainText = snippet.code.replace(/<[^>]*>?/gm, '');
         navigator.clipboard.writeText(plainText).then(() => {
-            this.showToast('Code snippet copied to clipboard! 📋');
+            this.showToast('Exemplo copiado para a área de transferência! 📋');
             this.playHapticSound(1000, 0.03);
         });
     }
@@ -636,8 +636,9 @@ class PortfolioApp {
 
         switch (trimmed) {
             case 'help':
+            case 'ajuda':
                 outputHtml = `
-                    <div class="terminal-line" style="color:#a1a1a6;">Available commands:</div>
+                    <div class="terminal-line" style="color:#a1a1a6;">Comandos disponíveis:</div>
                     ${this.data.terminalHelp.map(h => `
                         <div class="terminal-line" style="display:flex; justify-content:space-between; max-width:520px;">
                             <span style="color:#64d2ff; font-weight:600;">${h.cmd}</span>
@@ -648,6 +649,7 @@ class PortfolioApp {
                 break;
 
             case 'about':
+            case 'sobre':
                 outputHtml = `
                     <div class="terminal-line" style="color:#30d158;">👤 Sobre Vitor Matheus dos Santos Avelar:</div>
                     <div class="terminal-line">• Formação: Desenvolvimento de Sistemas no SENAI CTTI (início em 2025)</div>
@@ -658,6 +660,7 @@ class PortfolioApp {
                 break;
 
             case 'education':
+            case 'formacao':
             case 'senai':
                 outputHtml = `
                     <div class="terminal-line" style="color:#bf5af2;">🎓 Formação Acadêmica & Técnica:</div>
@@ -667,15 +670,17 @@ class PortfolioApp {
                 break;
 
             case 'languages':
+            case 'idiomas':
             case 'english':
                 outputHtml = `
-                    <div class="terminal-line" style="color:#64d2ff;">🌐 Idiomas & Proficiência:</div>
-                    <div class="terminal-line">• <strong>Inglês:</strong> Fluente / Full Professional Proficiency (Leitura, Escrita e Conversação)</div>
+                    <div class="terminal-line" style="color:#64d2ff;">🌐 Idiomas e proficiência:</div>
+                    <div class="terminal-line">• <strong>Inglês:</strong> Fluente (leitura, escrita e conversação)</div>
                     <div class="terminal-line">• <strong>Português:</strong> Nativo</div>
                 `;
                 break;
 
             case 'skills':
+            case 'competencias':
             case 'python':
                 outputHtml = `
                     <div class="terminal-line" style="color:#30d158;">⚡ Competências Técnicas Principais:</div>
@@ -687,8 +692,9 @@ class PortfolioApp {
                 break;
 
             case 'projects':
+            case 'projetos':
                 outputHtml = `
-                    <div class="terminal-line" style="color:#2997ff;">🚀 Top Engineering Projects:</div>
+                    <div class="terminal-line" style="color:#2997ff;">🚀 Projetos práticos:</div>
                     ${this.data.projects.map(p => `
                         <div class="terminal-line">
                             <strong style="color:#f5f5f7;">${p.title}</strong> — ${p.metrics}
@@ -698,8 +704,9 @@ class PortfolioApp {
                 break;
 
             case 'contact':
+            case 'contato':
                 outputHtml = `
-                    <div class="terminal-line" style="color:#bf5af2;">📬 Direct Contact Channels:</div>
+                    <div class="terminal-line" style="color:#bf5af2;">📬 Canais de contato:</div>
                     <div class="terminal-line">• Phone / WhatsApp: <a href="tel:+5531983224629" style="color:#64d2ff; text-decoration:underline;">+55 (31) 98322-4629</a></div>
                     <div class="terminal-line">• LinkedIn: <a href="${this.data.personal.socials.linkedin}" target="_blank" style="color:#64d2ff; text-decoration:underline;">linkedin.com/in/vitor-avelar-877619251</a></div>
                     <div class="terminal-line">• GitHub: <a href="${this.data.personal.socials.github}" target="_blank" style="color:#64d2ff; text-decoration:underline;">github.com/vitor16</a></div>
@@ -707,8 +714,9 @@ class PortfolioApp {
                 break;
 
             case 'experience':
+            case 'experiencia':
                 outputHtml = `
-                    <div class="terminal-line" style="color:#ff9f0a;">💼 Career History:</div>
+                    <div class="terminal-line" style="color:#ff9f0a;">💼 Trajetória profissional:</div>
                     ${this.data.experience.map(e => `
                         <div class="terminal-line">• ${e.role} @ ${e.company} (${e.period})</div>
                     `).join('')}
@@ -716,23 +724,26 @@ class PortfolioApp {
                 break;
 
             case 'theme dark':
+            case 'tema escuro':
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('liquid_portfolio_theme', 'dark');
-                outputHtml = `<div class="terminal-line" style="color:#30d158;">Theme switched to Dark mode 🌙</div>`;
+                outputHtml = `<div class="terminal-line" style="color:#30d158;">Tema escuro ativado 🌙</div>`;
                 break;
 
             case 'theme light':
+            case 'tema claro':
                 document.documentElement.setAttribute('data-theme', 'light');
                 localStorage.setItem('liquid_portfolio_theme', 'light');
-                outputHtml = `<div class="terminal-line" style="color:#ff9f0a;">Theme switched to Light mode ☀️</div>`;
+                outputHtml = `<div class="terminal-line" style="color:#ff9f0a;">Tema claro ativado ☀️</div>`;
                 break;
 
             case 'clear':
+            case 'limpar':
                 terminalBody.innerHTML = '';
                 return;
 
             default:
-                outputHtml = `<div class="terminal-line" style="color:#ff453a;">command not found: "${this.escapeHtml(cmdStr)}". Type <span style="color:#64d2ff;">help</span> for commands.</div>`;
+                outputHtml = `<div class="terminal-line" style="color:#ff453a;">Comando não encontrado: "${this.escapeHtml(cmdStr)}". Digite <span style="color:#64d2ff;">ajuda</span> para ver os comandos.</div>`;
                 break;
         }
 
@@ -798,30 +809,30 @@ class PortfolioApp {
 
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:30px;">
                     <div style="padding:20px; background:rgba(140,140,150,0.08); border-radius:16px; border:1px solid var(--glass-border-subtle);">
-                        <h4 style="font-size:15px; font-weight:700; margin-bottom:8px; color:var(--accent-pink);">💥 Technical Challenge</h4>
+                    <h4 style="font-size:15px; font-weight:700; margin-bottom:8px; color:var(--accent-pink);">💥 Desafio técnico</h4>
                         <p style="font-size:14px; color:var(--text-secondary); line-height:1.6;">${project.caseStudy.challenge}</p>
                     </div>
                     <div style="padding:20px; background:rgba(140,140,150,0.08); border-radius:16px; border:1px solid var(--glass-border-subtle);">
-                        <h4 style="font-size:15px; font-weight:700; margin-bottom:8px; color:var(--accent-blue);">🛠️ Architecture Solution</h4>
+                    <h4 style="font-size:15px; font-weight:700; margin-bottom:8px; color:var(--accent-blue);">🛠️ Solução aplicada</h4>
                         <p style="font-size:14px; color:var(--text-secondary); line-height:1.6;">${project.caseStudy.solution}</p>
                     </div>
                 </div>
 
                 <div style="padding:20px; background:rgba(52, 199, 89, 0.08); border-radius:16px; border:1px solid rgba(52, 199, 89, 0.3); margin-bottom:30px;">
-                    <h4 style="font-size:15px; font-weight:700; margin-bottom:6px; color:var(--accent-green);">📈 Measured Impact</h4>
+                    <h4 style="font-size:15px; font-weight:700; margin-bottom:6px; color:var(--accent-green);">📈 Resultado</h4>
                     <p style="font-size:14px; color:var(--text-primary); line-height:1.6;">${project.caseStudy.results}</p>
                 </div>
 
-                <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:16px;">Visual Gallery & Diagrams</h3>
+                <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:16px;">Imagens e detalhes</h3>
                 <div>${galleryHtml}</div>
 
                 <div style="display:flex; gap:12px; margin-top:24px;">
                     <a href="${project.liveUrl}" target="_blank" class="liquid-btn liquid-btn-primary">
-                        Visit Live Demo
+                        Abrir projeto online
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     </a>
                     <a href="${project.githubUrl}" target="_blank" class="liquid-btn liquid-btn-glass">
-                        Inspect Source Code
+                        Abrir GitHub
                     </a>
                 </div>
             </div>
@@ -854,13 +865,13 @@ class PortfolioApp {
             const originalText = submitBtn.innerHTML;
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `Sending...`;
+            submitBtn.innerHTML = `Enviando...`;
 
             setTimeout(() => {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
                 form.reset();
-                this.showToast('Message sent! I will respond within 24 hours 🚀');
+                this.showToast('Mensagem enviada! Responderei assim que possível 🚀');
                 this.playHapticSound(1100, 0.05);
             }, 1200);
         });
