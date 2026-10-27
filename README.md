@@ -13,9 +13,7 @@ O botão principal “Explorar projetos no GitHub” abre `https://github.com/vi
 Envie o conteúdo desta pasta para a raiz do repositório GitHub Pages associado a `https://vitor16.github.io/My-portfolio/`. O site é estático e não requer build ou instalação de dependências.
 
 
-## Atualização mais recente
-- A foto de perfil do site foi substituída pela nova foto fornecida.
-- `curriculo-vitor-avelar.pdf` agora é o currículo enviado pelo usuário, sem reescrever seu conteúdo.
+## Atualização mais recente- A foto de perfil do site foi substituída pela nova foto fornecida.
+- `curriculo-vitor-avelar.pdf` agora é o currículo mais novo com um QR code que te leva para meu portfolio
 
 
-Atualização: o painel de QR Code “Leve meu portfólio com você” foi removido da página de contato.
